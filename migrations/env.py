@@ -16,6 +16,8 @@ from src.models.chair_type import ChairType
 from src.models.chair import Chair
 from src.models.image import Image
 from src.models.review import Review
+from src.models.color import Color
+from src.models.chair_color import ChairColor
 
 config = context.config
 

@@ -2,7 +2,6 @@ from settings.database.database_connection import Base
 from sqlalchemy import Column, Integer, String, BigInteger, ForeignKey
 from sqlalchemy.orm import relationship
 from src.schemas.chair import ChairRead
-from src.models.review import Review
 
 class Chair(Base):
     __tablename__ = "Chair"
