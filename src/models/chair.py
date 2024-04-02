@@ -6,13 +6,14 @@ from src.schemas.chair import ChairRead
 class Chair(Base):
     __tablename__ = "Chair"
     id = Column(BigInteger, primary_key=True)
-    name = Column(String, nullable=False)
+    name = Column(String(45), nullable=False)
     price = Column(Integer, nullable=False)
     price_on_sale = Column(Integer, nullable=True,default=None)
     type = Column(BigInteger, ForeignKey("ChairType.id",ondelete="CASCADE"))
+    
     images = relationship("Image", lazy="selectin")
     reviews = relationship("Review", lazy="selectin")
-    
+    wishlists = relationship("Wishlist", lazy="selectin")
 
     def avg_star(self):
         total_star_rating = sum(review.star for review in self.reviews)

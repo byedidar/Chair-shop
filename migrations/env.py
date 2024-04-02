@@ -18,6 +18,7 @@ from src.models.image import Image
 from src.models.review import Review
 from src.models.color import Color
 from src.models.chair_color import ChairColor
+from src.models.wishlist import Wishlist
 
 config = context.config
 

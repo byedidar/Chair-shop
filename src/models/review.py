@@ -1,4 +1,3 @@
-from fastapi import Query
 from settings.database.database_connection import Base
 from sqlalchemy import Column, Integer, BigInteger, ForeignKey, Text, CheckConstraint
 from src.schemas.review import ReviewRead

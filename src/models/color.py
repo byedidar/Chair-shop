@@ -7,8 +7,8 @@ from src.schemas.color import ColorRead
 class Color(Base):
     __tablename__ = "Color"
     id = Column(Integer, primary_key=True)
-    name = Column(String(length=45), nullable=False)
-    hex = Column(String(length=45), nullable=False)
+    name = Column(String(45), nullable=False)
+    hex = Column(String(45), nullable=False)
 
     def to_read_model(self)->ColorRead:
         return ColorRead(
