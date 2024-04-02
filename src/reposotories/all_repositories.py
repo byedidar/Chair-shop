@@ -1,4 +1,4 @@
-from sqlalchemy import select
+
 from src.reposotories.repository import SQLAlchemyRepository
 from src.models.chair import Chair
 from src.models.chair_color import ChairColor
@@ -8,7 +8,6 @@ from src.models.image import Image
 from src.models.review import Review
 from src.models.user import User
 from src.models.wishlist import Wishlist
-from settings.database.database_connection import async_session
 
 
 class UserRepository(SQLAlchemyRepository):
@@ -19,7 +18,6 @@ class ChairRepository(SQLAlchemyRepository):
     
 class ColorRepository(SQLAlchemyRepository):
     model = Color  
-
 
 class ChairColorRepository(SQLAlchemyRepository):
     model = ChairColor 

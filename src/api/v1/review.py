@@ -1,17 +1,15 @@
 from fastapi import APIRouter, Depends, HTTPException
 
 from src.api.dependencies import review_service
-from src.reposotories.all_repositories import ChairRepository, UserRepository
-from src.schemas.review import ReviewCreate, ReviewRead
+from src.schemas.review import ReviewCreate
 from src.services.review import ReviewService
 
 review_router = APIRouter(prefix="/v1/review", tags=["review"])
 
 @review_router.post(
-    "/",
+    "/", 
     status_code=200,
-    summary="Добавить новый отзыв",
-    response_model=ReviewRead  
+    summary="Добавить новый отзыв" 
 )
 async def post_review(review_create: ReviewCreate, review_service: ReviewService = Depends(review_service)):
     user_exists = await review_service.get_entity(user_id=review_create.user_id)
