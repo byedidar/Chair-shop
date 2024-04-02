@@ -12,8 +12,8 @@ class Chair(Base):
     type = Column(BigInteger, ForeignKey("ChairType.id",ondelete="CASCADE"))
     
     images = relationship("Image", lazy="selectin")
-    reviews = relationship("Review", lazy="selectin")
-    wishlists = relationship("Wishlist", lazy="selectin")
+    reviews = relationship("Review", back_populates="chair", lazy="selectin")
+    wishlists = relationship("Wishlist", back_populates="chair", lazy="selectin")
 
     def avg_star(self):
         total_star_rating = sum(review.star for review in self.reviews)

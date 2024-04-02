@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String, TIMESTAMP, func
+from sqlalchemy.orm import relationship
 from settings.database.database_connection import Base
 from src.schemas.user import UserRead
 
@@ -9,6 +10,9 @@ class User(Base):
     hashed_password = Column(String(length=1024), nullable=True)
     registered_at = Column(TIMESTAMP(timezone=True), server_default=func.now())
     role_id = Column(Integer, nullable=True, default=1)
+
+    wishlists = relationship("Wishlist", lazy="selectin")
+    reviews = relationship("Review", back_populates="user", lazy="selectin")
 
     def to_read_model(self) -> UserRead:
         return UserRead(

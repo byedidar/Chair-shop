@@ -16,8 +16,8 @@ class UserRegistration(BaseModel):
     password: str
     confirm_password: str
 
-    class from_attributes:
-        orm_mode = True
+    class Config:
+        from_attributes = True
 
 
 class UserCreate(BaseModel):

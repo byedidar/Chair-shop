@@ -13,21 +13,16 @@ class Wishlist(Base):
     shell_color_id = Column(Integer, ForeignKey("Color.id"))
     bought = Column(Boolean, nullable=True, default=False)
     
-    users = relationship('User', back_populates='wishlist', lazy="selectin")
-    chairs = relationship('Chair', back_populates='wishlists', lazy="selectin")
+    user = relationship('User', back_populates='wishlists', lazy="selectin")
+    chair = relationship('Chair', back_populates='wishlists', lazy="selectin")
 
     def to_read_model(self)->WishlistRead:
-        users_read = [user.to_read_model() for user in self.users]
-        chairs_read = [chair.to_read_model() for chair in self.chairs]
-        
         return WishlistRead(
             id=self.id,
-            user_id=self.user_id,
-            chair_id=self.chair_id,
             bought_date=self.bought_date,
             upholstery_color_id=self.upholstery_color_id,
             shell_color_id=self.shell_color_id,
             bought=self.bought,
-            users=users_read,
-            chairs=chairs_read
+            user=self.user.to_read_model(),
+            chair=self.chair.to_read_model()
         )
