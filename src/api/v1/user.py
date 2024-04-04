@@ -9,13 +9,13 @@ user_router = APIRouter(prefix="/v1/user", tags=["user"])
 
 
 @user_router.get(
-    "/me", 
+    "/me/wishlist", 
     status_code=200,
     summary="Получение всех стульев из Wishlist"
 )
 async def get_my_wishlist(
     current_user: dict = Depends(get_current_user),
-    chairs: List[ChairRead] = Depends(wishlist_service.get_my_wishlists)
+    chairs: List[ChairRead] = Depends(wishlist_service)
 ):
     user_id = current_user.get('id')
     wishlists = await wishlist_service.get_my_wishlists(user_id)

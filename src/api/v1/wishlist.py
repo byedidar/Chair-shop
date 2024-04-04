@@ -22,27 +22,27 @@ async def create_wishlist(wishlist_create: WishlistCreate, wishlist_service: Wis
 
 
 @wishlist_router.get(
-        "/{wishlist_id}",
+        "/{id}",
         status_code=201,
         summary="Получение инфо о стуле в Wishlist-e"
 )
-async def get_wishlist(wishlist_id: int, wishlist_service: WishlistService = Depends(wishlist_service)):
-    wishlist = await wishlist_service.get_entity(id=wishlist_id)
+async def get_wishlist(id: int, wishlist_service: WishlistService = Depends(wishlist_service)):
+    wishlist = await wishlist_service.get_entity(id=id)
     if not wishlist:
         raise HTTPException(status_code=404, detail="Wishlist not found")
     return wishlist
 
 
 @wishlist_router.delete(
-        "/{wishlist_id}", 
+        "/{id}", 
         status_code=200,
         summary="Удаление стула из Wishlist-a"
 )
-async def delete_wishlist(wishlist_id: int, wishlist_service: WishlistService = Depends(wishlist_service))->bool:
-    wishlist = await wishlist_service.get_entity(id=wishlist_id)
+async def delete_wishlist(id: int, wishlist_service: WishlistService = Depends(wishlist_service))->bool:
+    wishlist = await wishlist_service.get_entity(id=id)
     if not wishlist:
         raise HTTPException(status_code=404, detail="Wishlist not found")
-    result = await wishlist_service.delete_entity(id=wishlist_id)
+    result = await wishlist_service.delete_entity(id=id)
     return {"success": result}
 
 
